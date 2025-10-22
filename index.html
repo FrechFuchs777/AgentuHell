@@ -219,9 +219,35 @@
     @media(max-width:760px){ .foot{grid-template-columns:1fr} .foot .links{justify-self:start} }
     /* UTIL */
     .pill{display:inline-flex; align-items:center; gap:.5rem; padding:10px 14px; border-radius:14px; font-weight:700}
+  
+    /* ─── CURSOR GLOW (desktop only) ───────────────────────────────────────── */
+    @media (hover:hover) and (pointer:fine){
+      .cursor-glow{
+        position: fixed;
+        left: 0; top: 0;
+        width: 180px; height: 180px;
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%,-50%);
+        opacity: 0;
+        transition: opacity .2s ease;
+        filter: blur(28px);
+        mix-blend-mode: screen;
+        z-index: 9999;
+        background: radial-gradient(circle at 50% 50%,
+          color-mix(in oklab, var(--brand-2) 46%, white 0%) 0%,
+          color-mix(in oklab, var(--brand-1) 28%, transparent) 55%,
+          transparent 70%);
+      }
+    }
+    @media (max-width: 560px){
+      .btns .pill, .contact-actions .pill{width:100%; justify-content:center}
+    }
+
   </style>
 </head>
 <body>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
   <!-- NAV -->
   <nav class="nav" aria-label="Hauptnavigation">
     <div class="nav-inner">
@@ -240,7 +266,8 @@
         <a href="#team">Team</a>
         <a href="#pakete">Pakete & Preise</a>
         <a href="#kontakt">Kontakt</a>
-        <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Kostenloses Erstgespräch</button>
+        <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
+        <a class="pill mail" href="mailto:Christopher.stainer@live.at"><span>✉️</span> Per Mail kontaktieren</a>
       </div>
     </div>
   </nav>
@@ -252,8 +279,8 @@
         <h1 class="h1 reveal">Social‑Media Erfolg auf Easymode.<br> <span style="background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">1‑Agency‑Army.</span> Agentu.</h1>
         <p class="lead reveal" style="transition-delay:.1s">Wir kombinieren jahrelange Marketing‑Erfahrung mit modernster KI, um Marken schneller, smarter und schöner zu machen.</p>
         <div class="btns reveal" style="transition-delay:.2s">
-          <a class="btn" href="#leistungen">Unsere Leistungen ansehen</a>
-          <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Kostenloses Erstgespräch</button>
+          <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
+          <a class="pill mail" href="mailto:Christopher.stainer@live.at"><span>✉️</span> Per Mail kontaktieren</a>
         </div>
       </div>
       <div class="hero-art reveal" style="transition-delay:.15s" id="art">
@@ -373,16 +400,7 @@
         <a href="#datenschutz">Datenschutz</a>
         <a href="#agb">AGB</a>
       </div>
-    </div>
-    <div class="wrap" id="impressum" style="margin-top:22px">
-      <h3>Impressum</h3>
-      <p class="muted">Platzhalter – bitte mit rechtlichen Angaben ersetzen.</p>
-      <h3 id="datenschutz">Datenschutz</h3>
-      <p class="muted">Platzhalter – bitte eure Datenschutzerklärung verlinken.</p>
-      <h3 id="agb">AGB</h3>
-      <p class="muted">Platzhalter – allgemeine Geschäftsbedingungen.</p>
-    </div>
-  </footer>
+    </div></footer>
 
   <script>
     // Year
@@ -395,6 +413,26 @@
       const open = navLinks.classList.toggle('open');
       hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+
+    
+    // Cursor glow (desktop only)
+    (function(){
+      const glow = document.getElementById('cursorGlow');
+      if(!glow) return;
+      const mq = window.matchMedia('(hover:hover) and (pointer:fine)');
+      if(!mq.matches){ glow.style.display='none'; return; }
+      let rafId = null;
+      let x = 0, y = 0;
+      const move = (e)=>{ x = e.clientX; y = e.clientY; if(!rafId){ rafId = requestAnimationFrame(tick);} };
+      const tick = ()=>{
+        glow.style.left = x + 'px';
+        glow.style.top = y + 'px';
+        glow.style.opacity = '1';
+        rafId = null;
+      };
+      window.addEventListener('mousemove', move, {passive:true});
+      window.addEventListener('mouseleave', ()=> glow.style.opacity='0', {passive:true});
+    })();
 
     // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{
