@@ -44,7 +44,7 @@
     }
     .nav-inner{
       max-width:var(--maxw); margin-inline:auto;
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; align-items:center; justify-content: flex-start;
       padding:10px var(--pad);
     }
     .brand{display:flex; align-items:center; gap:.65rem; font-weight:800; letter-spacing:.2px}
@@ -54,7 +54,7 @@
       box-shadow: 0 6px 18px rgba(169,193,213,.35), inset 0 0 0 2px rgba(255,255,255,.6);
     }
     .brand-name{font-size:1.15rem}
-    .nav-links{display:flex; align-items:center; gap:18px}
+    .nav-links{display:flex; align-items:center; gap:18px margin-left: auto; padding-left: clamp(24px, 6vw, 120px);}
     .nav-links a{padding:10px 12px; border-radius:12px; font-weight:500; color:var(--ink-soft)}
     .nav-links a:hover{background:rgba(169,193,213,.18); color:var(--ink)}
     .cta{
@@ -68,7 +68,7 @@
     .hamb{display:none; border:none; background:transparent; padding:8px; border-radius:12px}
     .hamb:active{background:rgba(0,0,0,.05)}
     @media (max-width: 900px){
-      .nav-links{display:none; position:absolute; left:0; right:0; top:64px; padding:10px var(--pad) 18px; background:rgba(255,255,255,.85); backdrop-filter: blur(8px); border-bottom:1px solid rgba(0,0,0,.06)}
+      .nav-links{display:none; position:absolute; left:0; right:0; top:64px; padding:10px var(--pad) 18px;  backdrop-filter: blur(8px); border-bottom:1px solid rgba(0,0,0,.06) background:#fff; box-shadow: 0 12px 24px rgba(0,0,0,.08); }
       .nav-links.open{display:grid; grid-template-columns:1fr; gap:6px}
       .hamb{display:inline-grid; place-items:center}
     }
@@ -184,6 +184,25 @@
       .person{grid-template-columns: 88px 1fr}
       .avatar{width:88px; height:88px}
     }
+    
+    /* Expandable package details */
+    .price{cursor:pointer}
+    .price .details{
+      max-height:0; overflow:hidden; opacity:0; transform: translateY(-4px);
+      transition: max-height .5s cubic-bezier(.2,.9,.2,1), opacity .25s ease, transform .25s ease, margin-top .25s ease;
+    }
+    .price .details ul{margin: 0; padding: 0 0 0 18px; color: var(--ink-soft)}
+    .price .details li{margin:8px 0}
+    .price .chev{
+      position:absolute; top:18px; right:18px; font-size:18px; transition: transform .25s ease; opacity:.7;
+    }
+    .price.open .details{ max-height: 420px; opacity:1; transform: translateY(0); margin-top:10px }
+    .price.open .chev{ transform: rotate(180deg) }
+    @media (hover:hover) and (pointer:fine){
+      .price:hover .details{ max-height: 420px; opacity:1; transform: translateY(0); margin-top:10px }
+      .price:hover .chev{ transform: rotate(180deg) }
+    }
+
     /* ─── PREISE ───────────────────────────────────────────────────────────── */
     .pricing{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-top:20px}
     .price{
@@ -225,18 +244,18 @@
       .cursor-glow{
         position: fixed;
         left: 0; top: 0;
-        width: 180px; height: 180px;
+        width: 200px; height: 200px;
         border-radius: 50%;
         pointer-events: none;
         transform: translate(-50%,-50%);
         opacity: 0;
         transition: opacity .2s ease;
         filter: blur(28px);
-        mix-blend-mode: screen;
-        z-index: 9999;
-        background: radial-gradient(circle at 50% 50%,
-          color-mix(in oklab, var(--brand-2) 46%, white 0%) 0%,
-          color-mix(in oklab, var(--brand-1) 28%, transparent) 55%,
+        z-index: 2147483647; /* above everything */
+        mix-blend-mode: normal; /* render above isolated stacks */
+        background: radial-gradient(60% 60% at 50% 50%,
+          color-mix(in oklab, var(--brand-2) 60%, white 0%) 0%,
+          color-mix(in oklab, var(--brand-1) 35%, transparent) 55%,
           transparent 70%);
       }
     }
@@ -244,10 +263,15 @@
       .btns .pill, .contact-actions .pill{width:100%; justify-content:center}
     }
 
+  
+    /* Force solid mobile menu background */
+    @media (max-width: 900px){
+      .nav-links{ background:#fff !important; box-shadow: 0 12px 24px rgba(0,0,0,.08) !important; }
+    }
+
   </style>
 </head>
 <body>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
   <!-- NAV -->
   <nav class="nav" aria-label="Hauptnavigation">
     <div class="nav-inner">
@@ -261,10 +285,9 @@
         </svg>
       </button>
       <div class="nav-links" id="navLinks">
-        <a href="#warum">Warum Agentu</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#team">Team</a>
-        <a href="#pakete">Pakete & Preise</a>
+        <a href="#pakete">Pakete</a>
         <a href="#kontakt">Kontakt</a>
         <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
         <a class="pill mail" href="mailto:Christopher.stainer@live.at"><span>✉️</span> Per Mail kontaktieren</a>
@@ -357,24 +380,48 @@
     <h2 class="section-title reveal">Pakete &amp; Preise</h2>
     <div class="pricing">
       <div class="price reveal">
+        <span class="chev">⌄</span>
         <span class="badge">🚀 Starter</span>
         <h4>Für schnellen Start</h4>
         <p>4 Posts/Monat, KI‑Strategie, 1 Ad‑Set</p>
         <div class="amount">ab 890&nbsp;€</div>
+        <div class="details"><ul>
+          <li>1 Kanal Setup (Instagram oder TikTok)</li>
+          <li>4 Posts/Monat (Mix aus Reels & Feed)</li>
+          <li>1 Werbeanzeige-Set inkl. A/B‑Variante</li>
+          <li>Copywriting, Hashtags & Community Light</li>
+          <li>Basic Monitoring & Monatsreport</li>
+        </ul></div>
         <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
       </div>
       <div class="price reveal" style="transition-delay:.06s">
+        <span class="chev">⌄</span>
         <span class="badge" style="background: color-mix(in oklab, var(--brand-2) 80%, white)">⚙️ Growth</span>
         <h4>Wachstum &amp; Learnings</h4>
         <p>8 Posts, 3 Ad‑Sets, Reporting</p>
         <div class="amount">ab 1.590&nbsp;€</div>
+        <div class="details"><ul>
+          <li>2–3 Kanäle im Management</li>
+          <li>8 Posts/Monat + 4 Story‑Pakete</li>
+          <li>3 Werbeanzeige‑Sets inkl. Retargeting</li>
+          <li>Content‑Plan & Redaktionskalender</li>
+          <li>Monatsreport mit Learnings & Next Steps</li>
+        </ul></div>
         <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
       </div>
       <div class="price reveal" style="transition-delay:.12s">
+        <span class="chev">⌄</span>
         <span class="badge" style="background: linear-gradient(135deg, var(--brand-1), var(--brand-2))">🌐 Custom</span>
         <h4>Individuell &amp; flexibel</h4>
         <p>Individuelle Betreuung – exakt auf dein Setup zugeschnitten.</p>
         <div class="amount">auf Anfrage</div>
+        <div class="details"><ul>
+          <li>Audit & Strategie‑Workshop</li>
+          <li>Content‑Produktion vor Ort (Video/Foto)</li>
+          <li>UGC/Creator‑Sourcing & Influencersteuerung</li>
+          <li>Always‑on Ads & Funnel‑Setups</li>
+          <li>Individuelle KPIs & Dashboards</li>
+        </ul></div>
         <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
       </div>
     </div>
@@ -415,21 +462,22 @@
     });
 
     
-    // Cursor glow (desktop only)
+    // Cursor glow (desktop only) — appended as last child for top stacking
     (function(){
-      const glow = document.getElementById('cursorGlow');
-      if(!glow) return;
       const mq = window.matchMedia('(hover:hover) and (pointer:fine)');
-      if(!mq.matches){ glow.style.display='none'; return; }
-      let rafId = null;
-      let x = 0, y = 0;
-      const move = (e)=>{ x = e.clientX; y = e.clientY; if(!rafId){ rafId = requestAnimationFrame(tick);} };
-      const tick = ()=>{
-        glow.style.left = x + 'px';
-        glow.style.top = y + 'px';
-        glow.style.opacity = '1';
-        rafId = null;
-      };
+      if(!mq.matches) return;
+      let glow = document.getElementById('cursorGlow');
+      if(!glow){
+        glow = document.createElement('div');
+        glow.id = 'cursorGlow';
+        glow.className = 'cursor-glow';
+        document.body.appendChild(glow); // append as last child
+      } else {
+        document.body.appendChild(glow); // ensure last
+      }
+      let rafId = null, x=0, y=0;
+      const move = (e)=>{ x=e.clientX; y=e.clientY; if(!rafId){ rafId=requestAnimationFrame(tick);} };
+      const tick = ()=>{ glow.style.left = x+'px'; glow.style.top = y+'px'; glow.style.opacity='1'; rafId=null; };
       window.addEventListener('mousemove', move, {passive:true});
       window.addEventListener('mouseleave', ()=> glow.style.opacity='0', {passive:true});
     })();
