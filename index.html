@@ -54,7 +54,7 @@
       box-shadow: 0 6px 18px rgba(169,193,213,.35), inset 0 0 0 2px rgba(255,255,255,.6);
     }
     .brand-name{font-size:1.15rem}
-    .nav-links{display:flex; align-items:center; gap:18px margin-left: auto; padding-left: clamp(24px, 6vw, 120px);}
+    .nav-links{display:flex; align-items:center; gap:18px  padding-left: clamp(24px, 6vw, 120px);}
     .nav-links a{padding:10px 12px; border-radius:12px; font-weight:500; color:var(--ink-soft)}
     .nav-links a:hover{background:rgba(169,193,213,.18); color:var(--ink)}
     .cta{
@@ -65,7 +65,7 @@
       transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
     .cta:hover{transform:translateY(-2px); box-shadow:0 14px 28px rgba(179,169,183,.45)}
-    .hamb{display:none; border:none; background:transparent; padding:8px; border-radius:12px}
+    .hamb{display:none; border:none; background:transparent; padding:8px; border-radius:12px margin-left: auto;}
     .hamb:active{background:rgba(0,0,0,.05)}
     @media (max-width: 900px){
       .nav-links{display:none; position:absolute; left:0; right:0; top:64px; padding:10px var(--pad) 18px;  backdrop-filter: blur(8px); border-bottom:1px solid rgba(0,0,0,.06) background:#fff; box-shadow: 0 12px 24px rgba(0,0,0,.08); }
@@ -280,6 +280,21 @@
     .avatar img{ width:100%; height:100%; object-fit: cover; display:block; }
     .avatar.merve img{ object-position:50% 44%; transform: scale(1.12); transform-origin:center; }  /* focus slightly higher */
     .avatar.chris img{ object-position: 50% 38%; }  /* focus forehead/eyes */
+
+    /* Hide contact pills from mobile dropdown */
+    @media (max-width: 900px){
+      .nav-links .pill{ display:none !important; }
+    }
+
+    /* Solid mobile dropdown background & proper stacking */
+    @media (max-width: 900px){
+      .nav-links{
+        background:#fff !important;
+        box-shadow: 0 18px 36px rgba(0,0,0,.12) !important;
+        border:1px solid rgba(31,36,48,.06);
+        z-index: 9998;
+      }
+    }
 </style>
 </head>
 <body>
