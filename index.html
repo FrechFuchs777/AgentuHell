@@ -259,8 +259,6 @@
           transparent 70%);
       }
     }
-    @media (max-width: 560px){
-      .btns .pill, .contact-actions .pill{width:100%; justify-content:center}
     }
 
   
@@ -269,7 +267,15 @@
       .nav-links{ background:#fff !important; box-shadow: 0 12px 24px rgba(0,0,0,.08) !important; }
     }
 
-  </style>
+  
+    /* Hero mobile: buttons smaller and above title */
+    @media (max-width: 700px){
+      .hero-grid > div:first-child{ display:flex; flex-direction:column; }
+      .hero .btns{ order:-1; margin-bottom:10px; }
+      .hero .btns .pill{ padding:8px 10px; font-size:13px; border-radius:12px; }
+      .hero .btns{ gap:8px; }
+    }
+</style>
 </head>
 <body>
   <!-- NAV -->
@@ -299,7 +305,7 @@
   <header class="hero wrap">
     <div class="hero-grid">
       <div>
-        <h1 class="h1 reveal">Social‑Media Erfolg auf Easymode.<br> <span style="background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">1‑Agency‑Army.</span> Agentu.</h1>
+        <h1 class="h1 reveal">Social‑Media im Easymode.<br> <span style="background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">1‑Agency‑Army.</span> Agentu.</h1>
         <p class="lead reveal" style="transition-delay:.1s">Wir kombinieren jahrelange Marketing‑Erfahrung mit modernster KI, um Marken schneller, smarter und schöner zu machen.</p>
         <div class="btns reveal" style="transition-delay:.2s">
           <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
@@ -480,6 +486,23 @@
       const tick = ()=>{ glow.style.left = x+'px'; glow.style.top = y+'px'; glow.style.opacity='1'; rafId=null; };
       window.addEventListener('mousemove', move, {passive:true});
       window.addEventListener('mouseleave', ()=> glow.style.opacity='0', {passive:true});
+    })();
+
+    
+    // Auto-close mobile nav on link click (after scrolling)
+    (function(){
+      const navLinks = document.getElementById('navLinks');
+      const hamb = document.getElementById('hamb');
+      if(!navLinks || !hamb) return;
+      navLinks.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          // allow the scroll to start then close
+          if (window.innerWidth <= 900) {
+            navLinks.classList.remove('open');
+            hamb.setAttribute('aria-expanded','false');
+          }
+        }, {passive:true});
+      });
     })();
 
     // Reveal on scroll
