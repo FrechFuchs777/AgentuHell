@@ -368,6 +368,27 @@
 
 /* Minor polish: ensure brand mark & name stay aligned */
 .brand{ display:inline-flex; align-items:center; gap:10px; }
+
+/* Mobile hero art: reduce to ~1cm height band and keep it crisp */
+@media (max-width: 700px){
+  .hero-art{
+    aspect-ratio: auto !important;
+    height: 1cm;               /* ~1cm high as requested */
+    min-height: 40px;          /* safeguard for very small screens */
+    max-height: 60px;          /* keep it slim */
+    width: min(92vw, 560px);
+    margin: 8px auto 4px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-1));
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .hero-art::before{
+    inset: -6px; border-radius: 20px; filter: blur(10px); opacity:.25;
+  }
+  /* Hide complex internals to avoid clipping in the thin band */
+  .hero-art .blob, .hero-art .dot{ display:none !important; }
+}
 </style>
 </head>
 <body>
@@ -617,6 +638,37 @@
       });
     });
     art.addEventListener('mouseleave', ()=> dots.forEach(d=> d.style.transform = 'translate(0,0)'));
-  </script>
+  
+  // Click-to-toggle for 'Pakete' cards (works great on mobile)
+  (function(){
+    const cards = document.querySelectorAll('.pricing .price');
+    if(!cards.length) return;
+    cards.forEach(card => {
+      // Improve accessibility
+      card.setAttribute('tabindex','0');
+      card.setAttribute('role','button');
+      card.setAttribute('aria-expanded', card.classList.contains('open') ? 'true' : 'false');
+      const details = card.querySelector('.details');
+      if(details){ details.setAttribute('aria-hidden', card.classList.contains('open') ? 'false' : 'true'); }
+
+      const toggle = () => {
+        // Avoid toggling if a button or link inside was clicked
+        card.classList.toggle('open');
+        card.setAttribute('aria-expanded', card.classList.contains('open') ? 'true' : 'false');
+        if(details){ details.setAttribute('aria-hidden', card.classList.contains('open') ? 'false' : 'true'); }
+      };
+      card.addEventListener('click', (e)=>{
+        if(e.target.closest('a,button')) return;
+        toggle();
+      });
+      card.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+  })();
+</script>
 </body>
 </html>
