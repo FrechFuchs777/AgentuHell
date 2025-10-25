@@ -444,6 +444,28 @@
   }
 </style>
 
+<style id="leistungen-white-overrides">
+
+/* === Override: Make the six tiles under "Leistungen" white like other cards === */
+#leistungen .card, #leistungen .service-card, #leistungen .tile, #leistungen .kachel,
+#services .card, #services .service-card, #services .tile, #services .kachel,
+section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id*="leistung"] .tile, section[id*="leistung"] .kachel {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #1f2937 !important; /* slate-800 for good contrast */
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04) !important;
+}
+/* If the tiles used gradient utility classes, neutralize them inside the section */
+#leistungen [class*="gradient"], #services [class*="gradient"], section[id*="leistung"] [class*="gradient"] {
+  background: #ffffff !important;
+  background-image: none !important;
+}
+/* Ensure headings and icons inside remain visible */
+#leistungen h3, #services h3, section[id*="leistung"] h3 { color: #0f172a !important; }
+#leistungen p, #services p, section[id*="leistung"] p { color: #334155 !important; }
+
+</style>
 </head>
 <body>
   <!-- NAV -->
