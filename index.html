@@ -75,8 +75,8 @@
     /* ─── HERO ────────────────────────────────────────────────────────────────── */
     .hero{
       position:relative; overflow:hidden;
-      padding: clamp(56px, 8vw, 108px) var(--pad) clamp(36px, 6vw, 72px);
-    }
+      padding: clamp(28px, 5vw, 72px) var(--pad) clamp(24px, 4vw, 56px);
+      }
     .wrap{max-width:var(--maxw); margin-inline:auto}
     .hero-grid{display:grid; grid-template-columns: 1.15fr .85fr; gap: min(5vw, 52px); align-items:center}
     .h1{
@@ -389,7 +389,32 @@
   /* Hide complex internals to avoid clipping in the thin band */
   .hero-art .blob, .hero-art .dot{ display:none !important; }
 }
-</style>
+
+/* Ensure contact buttons are under hero text on mobile, not in the navbar */
+@media (max-width: 900px){
+  .nav .nav-links a.pill.whats,
+  .nav .nav-links a.pill.mail{ display:none !important; }
+  .hero .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+}
+
+  
+/* ─── FLIP CARDS (Warum + Leistungen) ───────────────────────────────────────── */
+.flip-card{ position:relative; perspective:1200px; transform-style:preserve-3d; cursor:pointer; }
+.flip-card .flip-inner{ position:relative; width:100%; height:100%; transition: transform .6s cubic-bezier(.2,.6,.2,1); transform-style:preserve-3d; }
+.flip-card .flip-front, .flip-card .flip-back{
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:inherit; padding:inherit; display:flex; flex-direction:column; justify-content:center;
+}
+.flip-card .flip-back{ transform: rotateY(180deg); }
+.flip-card.flipped .flip-inner{ transform: rotateY(180deg); }
+/* Hover flip on desktop only */
+@media (hover:hover) and (pointer:fine){
+  .flip-card:not(.no-hover):hover .flip-inner{ transform: rotateY(180deg); }
+}
+/* Make features a bit taller so both sides fit comfortably */
+.feature{ min-height: 148px; }
+
+  </style>
 
 <style id="theme-overrides">
   :root{
@@ -746,6 +771,93 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
       });
     });
   })();
+
+// ─── Flip Cards Enhancement ───────────────────────────────────────────────────
+(function(){
+  // Helper: make an element flip-enabled by wrapping its content
+  function makeFlip(el){
+    if(!el || el.classList.contains('flip-card')) return;
+    el.classList.add('flip-card');
+    // keep original classes and padding; wrap content
+    const front = document.createElement('div');
+    front.className = 'flip-front';
+    // move children to front
+    while(el.firstChild){
+      front.appendChild(el.firstChild);
+    }
+    const back = document.createElement('div');
+    back.className = 'flip-back';
+    // Heading clone or simple fallback
+    let title = el.querySelector('h3,h4');
+    const heading = document.createElement('h3');
+    heading.textContent = (title && title.textContent ? title.textContent : 'Details');
+    const p = document.createElement('p');
+    p.className = 'muted';
+    p.textContent = 'Platz für deinen Rückseiten‑Text. Ersetze diesen Text.';
+    back.appendChild(heading);
+    back.appendChild(p);
+
+    const inner = document.createElement('div');
+    inner.className = 'flip-inner';
+    inner.appendChild(front);
+    inner.appendChild(back);
+    el.appendChild(inner);
+
+    // Accessibility
+    el.setAttribute('tabindex','0');
+    el.setAttribute('role','button');
+    el.setAttribute('aria-pressed','false');
+
+    // Click to toggle
+    const toggle = ()=>{
+      el.classList.toggle('flipped');
+      el.setAttribute('aria-pressed', el.classList.contains('flipped') ? 'true' : 'false');
+    };
+    el.addEventListener('click', (ev)=>{
+      // avoid toggling when clicking links/buttons inside
+      const t = ev.target;
+      if(t.closest('a,button')) return;
+      toggle();
+    });
+    el.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter' || ev.key === ' '){
+        ev.preventDefault();
+        toggle();
+      }
+    });
+  }
+
+  // Apply to "Warum Agentu?" (three features) and "Leistungen" (six cards)
+  document.querySelectorAll('#warum .feature').forEach(makeFlip);
+  document.querySelectorAll('#leistungen .card').forEach(makeFlip);
+
+  // Height balance (optional): if back content grows later, ensure min-height keeps up
+  function balanceHeights(){
+    document.querySelectorAll('.flip-card').forEach(el=>{
+      // Reset any inline minHeight first
+      el.style.minHeight = '';
+      const inner = el.querySelector('.flip-inner');
+      if(!inner) return;
+      // Temporarily ensure fronts/backs can size naturally to measure
+      const front = el.querySelector('.flip-front');
+      const back = el.querySelector('.flip-back');
+      // Remove transforms to measure
+      const prev = inner.style.transform;
+      inner.style.transform = 'none';
+      // Let absolute children size themselves by making container position:relative (already) and reading scrollHeights
+      const maxH = Math.max(front.scrollHeight, back.scrollHeight);
+      // Keep at least existing computed height/min-height
+      const computed = getComputedStyle(el);
+      const baseMin = parseFloat(computed.minHeight) || 0;
+      el.style.minHeight = Math.max(baseMin, maxH) + 'px';
+      // Restore transform
+      inner.style.transform = prev;
+    });
+  }
+  balanceHeights();
+  window.addEventListener('resize', ()=>{ clearTimeout(window.__flipRaf); window.__flipRaf = setTimeout(balanceHeights, 120); }, {passive:true});
+})();
+
 </script>
 </body>
 </html>
