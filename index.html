@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agentu – Social Media im easymode.</title>
-  <meta name="description" content="Agentu: Zwei-Personen Social-Media-Agentur mit KI-Power. Schneller, direkter, effizienter." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Agentu – Social Media im easymode.</title>
+<meta content="Agentu: Zwei-Personen Social-Media-Agentur mit KI-Power. Schneller, direkter, effizienter." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
     :root{
       --brand-1:#A9C1D5; /* aus Bild 22:09:41 (helles Blau) */
       --brand-2:#3B82F6; /* aus Bild 22:09:30 (Lavendel-Grau) */
@@ -75,8 +76,8 @@
     /* ─── HERO ────────────────────────────────────────────────────────────────── */
     .hero{
       position:relative; overflow:hidden;
-      padding: clamp(28px, 5vw, 72px) var(--pad) clamp(24px, 4vw, 56px);
-      }
+      padding: clamp(56px, 8vw, 108px) var(--pad) clamp(36px, 6vw, 72px);
+    }
     .wrap{max-width:var(--maxw); margin-inline:auto}
     .hero-grid{display:grid; grid-template-columns: 1.15fr .85fr; gap: min(5vw, 52px); align-items:center}
     .h1{
@@ -389,91 +390,7 @@
   /* Hide complex internals to avoid clipping in the thin band */
   .hero-art .blob, .hero-art .dot{ display:none !important; }
 }
-
-/* Ensure contact buttons are under hero text on mobile, not in the navbar */
-@media (max-width: 900px){
-  .nav .nav-links a.pill.whats,
-  .nav .nav-links a.pill.mail{ display:none !important; }
-  .hero .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-}
-
-  
-/* ─── FLIP CARDS (Warum + Leistungen) ───────────────────────────────────────── */
-.flip-card{ position:relative; perspective:1200px; transform-style:preserve-3d; cursor:pointer; }
-.flip-card .flip-inner{ position:relative; width:100%; height:100%; transition: transform .6s cubic-bezier(.2,.6,.2,1); transform-style:preserve-3d; }
-.flip-card .flip-front, .flip-card .flip-back{
-  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-  border-radius:inherit; padding:inherit; display:flex; flex-direction:column; justify-content:center;
-}
-.flip-card .flip-back{ transform: rotateY(180deg); }
-.flip-card.flipped .flip-inner{ transform: rotateY(180deg); }
-/* Hover flip on desktop only */
-@media (hover:hover) and (pointer:fine){
-  .flip-card:not(.no-hover):hover .flip-inner{ transform: rotateY(180deg); }
-}
-/* Make features a bit taller so both sides fit comfortably */
-.feature{ min-height: 148px; }
-
-  
-/* Mobile fix: hide any contact pills in the NAV completely */
-@media (max-width: 900px){
-  .nav a.pill.whats,
-  .nav a.pill.mail{ display:none !important; }
-  /* Ensure hero buttons sit tight under the subtitle */
-  .hero .lead + .lead + .btns{ margin-top: 8px; }
-}
-
-  
-/* Flip stability for Warum-Agentu features */
-.features .feature.flip-card{ transition: box-shadow .2s ease !important; }
-.features .feature.flip-card:hover{ transform:none !important; }
-.flip-card .flip-inner{ will-change: transform; }
-
-  
-/* Mobile: ensure NAV contact pills never show above the hero */
-@media (max-width: 900px){
-  .nav a.pill.whats,
-  .nav a.pill.mail{ display:none !important; visibility:hidden !important; }
-  /* Keep hero buttons tight under subtitle */
-  .hero .btns{ margin-top: 8px !important; }
-}
-
-  
-/* Flip stability on Warum-Agentu features: disable outer transforms */
-.features .feature.flip-card{ transition: box-shadow .2s ease !important; transform:none !important; }
-.features .feature.flip-card:hover{ transform:none !important; }
-/* Ensure front/back take padding while container has none when flip is enabled */
-.flip-card.use-inner-padding{ padding:0 !important; }
-.flip-card.use-inner-padding .flip-front,
-.flip-card.use-inner-padding .flip-back{
-  padding-top: var(--flip-pad-top, 20px);
-  padding-right: var(--flip-pad-right, 20px);
-  padding-bottom: var(--flip-pad-bottom, 20px);
-  padding-left: var(--flip-pad-left, 20px);
-}
-
-  
-/* ---- Padding restore for flip cards (no text flush to edges) ---- */
-#warum .feature.flip-card.use-inner-padding{ padding:20px !important; }
-#leistungen .card.flip-card.use-inner-padding{ padding:18px !important; }
-.flip-card.use-inner-padding .flip-front,
-.flip-card.use-inner-padding .flip-back{ padding: inherit !important; }
-/* Disable outer transform animations that fight with 3D flip */
-#warum .feature:hover,
-#warum .feature.flip-card:hover,
-#leistungen .card:hover,
-#leistungen .card.flip-card:hover{ transform:none !important; }
-
-  
-/* ---- Mobile: hide nav pills and prevent unexpected layout ---- */
-@media (max-width: 900px){
-  .nav .nav-links a.pill.whats,
-  .nav .nav-links a.pill.mail{ display:none !important; visibility:hidden !important; }
-  .hero .btns{ margin-top:10px !important; }
-}
-
-  </style>
-
+</style>
 <style id="theme-overrides">
   :root{
     --bg-lilac-1:#FFFFFF; --bg-lilac-2:#F5EEFF; --bg-lilac-3:#E9DBFF;
@@ -518,15 +435,12 @@
   }
   input::placeholder, textarea::placeholder{ color: rgba(34,34,34,.6) !important; }
 </style>
-
-
 <style id="leistungen-white-cards">
   /* Make ONLY the 6 service (Leistungen) cards white */
   #leistungen .card{
     background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 60%, #F2F2F2 100%) !important;
   }
 </style>
-
 <style id="leistungen-white-overrides">
 
 /* === Override: Make the six tiles under "Leistungen" white like other cards === */
@@ -549,187 +463,214 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
 #leistungen p, #services p, section[id*="leistung"] p { color: #334155 !important; }
 
 </style>
-</head>
+<style>
+/* === Overrides added by ChatGPT on 2025-10-26 === */
+
+/* Reduce gap between header and hero title (desktop & mobile) */
+.hero{ padding-top: clamp(36px, 6vw, 72px) !important; }
+
+/* Mobile: show contact buttons in hero AFTER the text; hide them in the nav */
+@media (max-width: 900px){
+  .nav .nav-links a.pill.whats,
+  .nav .nav-links a.pill.mail{ display:none !important; }
+}
+@media (max-width: 700px){
+  .hero-grid > div:first-child{ display:flex; flex-direction:column; }
+  .hero .btns{ order: 2 !important; margin-top: 10px; margin-bottom: 0; }
+}
+
+/* Flip-card base styles */
+.flip-card{ position:relative; perspective:1000px; cursor:pointer; }
+.flip-card .flip-inner{ position:relative; transform-style:preserve-3d; transition: transform .6s; min-height: 100%; }
+.flip-card .flip-front, .flip-card .flip-back{
+  position:absolute; inset:0; padding:inherit; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  display:flex; flex-direction:column; justify-content:flex-start;
+}
+.flip-card .flip-back{ transform: rotateY(180deg); }
+/* Hover flip (desktop with hover) */
+@media (hover:hover){
+  .flip-card:hover .flip-inner{ transform: rotateY(180deg); }
+}
+/* Click/toggle flip */
+.flip-card.is-flipped .flip-inner{ transform: rotateY(180deg); }
+
+/* Ensure the original card/feature visual styles apply to both faces */
+.feature.flip-card, .card.flip-card{ overflow:hidden; }
+.feature.flip-card .flip-front, .feature.flip-card .flip-back{ background:inherit; border-radius: inherit; }
+.card.flip-card .flip-front, .card.flip-card .flip-back{ background:inherit; border-radius: inherit; }
+</style></head>
 <body>
-  <!-- NAV -->
-  <nav class="nav" aria-label="Hauptnavigation">
-    <div class="nav-inner">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">Agentu</span>
-      </div>
-      <button class="hamb" id="hamb" aria-label="Menü öffnen" aria-expanded="false">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <div class="nav-links" id="navLinks">
-        <a href="#leistungen">Leistungen</a>
-        <a href="#team">Team</a>
-        <a href="#pakete">Pakete</a>
-        <a href="#kontakt">Kontakt</a>
-        <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
-        <a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero wrap">
-    <div class="hero-grid">
-      <div>
-        <h1 class="h1 reveal">Social Media<br> <span style="background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">im easymode.</span> Agentu.</h1>
-        <p class="lead reveal" style="transition-delay:.1s">Wake up call: Webseiten sind (bald) tot.</p>
-        <p class="lead reveal" style="transition-delay:.1s">Heute wirst du auf Social Media gefunden, nicht gegoogelt. Wir machen dich sichtbar, relevant und unübersehbar - genau dort, wo Menschen nach dir suchen.</p>
-        <div class="btns reveal" style="transition-delay:.2s">
-          <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
-          <a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
-        </div>
-      </div>
-      <div class="hero-art reveal" style="transition-delay:.15s" id="art">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
-        <div class="blob b3"></div>
-        <span class="dot d1"></span>
-        <span class="dot d2"></span>
-        <span class="dot d3"></span>
-      </div>
-    </div>
-  </header>
-
-  <!-- WARUM -->
-  <section id="warum" class="wrap">
-    <h2 class="section-title reveal">Warum Agentu?</h2>
-    <p class="muted reveal" style="max-width:820px">Große Agenturen sind wie Containerschiffe: langsam, unfelxibel & teuer.</p>
-    <p class="muted reveal" style="max-width:820px">Wir sind das Speedboot: schnell, effizient & ... einfach fresh.</p>
-    <p class="muted reveal" style="max-width:820px">Wir verstehen Marketing. In stürmischen Zeiten von KI und starkem Wellengang im digitalen Raum navigieren wir flexibel an der Wasseroberfläche, während Conteinerschiffe langsam untergehen.</p>
-    <p class="muted reveal" style="max-width:820px">Unsere Passagiere kommen sicher an Land - und sehen dabei sogar noch verdammt gut aus.</p>
-    <div class="features">
-      <div class="feature reveal">
-        <h3>Schnelligkeit</h3>
-        <p>Weniger Abstimmung, mehr Output. Iterationen in Tagen – nicht in Monaten.</p>
-      </div>
-      <div class="feature reveal" style="transition-delay:.06s">
-        <h3>KI‑Kompetenz</h3>
-        <p>Wir nutzen Tools, keine Buzzwords. Automatisiert, messbar, skalierbar.</p>
-      </div>
-      <div class="feature reveal" style="transition-delay:.12s">
-        <h3>Direkter Kontakt</h3>
-        <p>Kein Overhead, keine Zwischenebene – nur wir. Schnelle Entscheidungen.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEISTUNGEN -->
-  <section id="leistungen" class="wrap">
-    <h2 class="section-title reveal">Leistungen</h2>
-    <p class="muted reveal">Sechs Services – alle mit KI‑Turbo.</p>
-    <div class="cards">
-      <article class="card reveal"><h3>Social Strategy</h3><p>KI‑gestützte Markenstrategien, klare Roadmaps, fundierte Zielgruppenarbeit.</p></article>
-      <article class="card reveal" style="transition-delay:.06s"><h3>Content Creation</h3><p>Texte, Bilder, Videos – effizient produziert, kreativ inszeniert.</p></article>
-      <article class="card reveal" style="transition-delay:.12s"><h3>Performance &amp; Ads</h3><p>Intelligente Kampagnen mit Impact – von Setup bis Skalierung.</p></article>
-      <article class="card reveal" style="transition-delay:.18s"><h3>Community Management</h3><p>Von Chatbots bis Krisenkommunikation – nah dran, schnell reagiert.</p></article>
-      <article class="card reveal" style="transition-delay:.24s"><h3>KI‑Automation</h3><p>Prozesse, die laufen – Automationen für Content, Insights &amp; Support.</p></article>
-      <article class="card reveal" style="transition-delay:.30s"><h3>Consulting &amp; Workshops</h3><p>KI verstehen, richtig nutzen – Hands‑on, an echten Use‑Cases.</p></article>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team" class="wrap">
-    <h2 class="section-title reveal">Team</h2>
-    <div class="team">
-      <div class="person reveal">
-        <div class="avatar merve" aria-hidden="true"><img src="assets/team/merve-agentu-team.png" alt="Merve – Agentu Team"></div>
-        <div>
-          <h4>Merve</h4>
-          <p>Master in Produktmarketing &amp; Innovationsmanagement. Hebt Kanäle über die 10k‑Marke, erkennt Trends, bevor sie auf der For‑You‑Page landen – und übersetzt sie in messbares Wachstum.</p>
-        </div>
-      </div>
-      <div class="person reveal" style="transition-delay:.06s">
-        <div class="avatar chris" aria-hidden="true"><img src="assets/team/chris-agentu-team.jpg" alt="Chris – Agentu Team"></div>
-        <div>
-          <h4>Chris</h4>
-          <p>Master in Produktmarketing &amp; Innovationsmanagement. Enterprise‑Erfahrung ohne Enterprise‑Trägheit. Baut schlanke Content‑Maschinen mit klaren KPIs und sauberem Reporting.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAKETE / PREISE -->
-  <section id="pakete" class="wrap">
-    <h2 class="section-title reveal">Pakete &amp; Preise</h2>
-    <div class="pricing">
-      <div class="price reveal">
-        <span class="chev">⌄</span>
-        <span class="badge">🚀 Starter</span>
-        <h4>Für schnellen Start</h4>
-        <p>4 Posts/Monat, KI‑Strategie, 1 Ad‑Set</p>
-        <div class="amount">ab 890&nbsp;€</div>
-        <div class="details"><ul>
-          <li>1 Kanal Setup (Instagram oder TikTok)</li>
-          <li>4 Posts/Monat (Mix aus Reels & Feed)</li>
-          <li>1 Werbeanzeige-Set inkl. A/B‑Variante</li>
-          <li>Copywriting, Hashtags & Community Light</li>
-          <li>Basic Monitoring & Monatsreport</li>
-        </ul></div>
-        <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-      </div>
-      <div class="price reveal" style="transition-delay:.06s">
-        <span class="chev">⌄</span>
-        <span class="badge" style="background: color-mix(in oklab, var(--brand-2) 80%, white)">⚙️ Growth</span>
-        <h4>Wachstum &amp; Learnings</h4>
-        <p>8 Posts, 3 Ad‑Sets, Reporting</p>
-        <div class="amount">ab 1.590&nbsp;€</div>
-        <div class="details"><ul>
-          <li>2–3 Kanäle im Management</li>
-          <li>8 Posts/Monat + 4 Story‑Pakete</li>
-          <li>3 Werbeanzeige‑Sets inkl. Retargeting</li>
-          <li>Content‑Plan & Redaktionskalender</li>
-          <li>Monatsreport mit Learnings & Next Steps</li>
-        </ul></div>
-        <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-      </div>
-      <div class="price reveal" style="transition-delay:.12s">
-        <span class="chev">⌄</span>
-        <span class="badge" style="background: linear-gradient(135deg, var(--brand-1), var(--brand-2))">🌐 Custom</span>
-        <h4>Individuell &amp; flexibel</h4>
-        <p>Individuelle Betreuung – exakt auf dein Setup zugeschnitten.</p>
-        <div class="amount">auf Anfrage</div>
-        <div class="details"><ul>
-          <li>Audit & Strategie‑Workshop</li>
-          <li>Content‑Produktion vor Ort (Video/Foto)</li>
-          <li>UGC/Creator‑Sourcing & Influencersteuerung</li>
-          <li>Always‑on Ads & Funnel‑Setups</li>
-          <li>Individuelle KPIs & Dashboards</li>
-        </ul></div>
-        <button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- KONTAKT -->
-  <section id="kontakt" class="wrap">
-    <h2 class="section-title reveal">Kontakt</h2>
-    <p class="muted reveal" style="max-width:820px">Keine Lust auf leere Meetings? Schreib uns direkt – wir antworten schneller als dein letzter Agenturpartner.</p>
-    <div class="contact-actions reveal" style="transition-delay:.08s">
-      <a class="pill whats" href="https://wa.me/436604240704" target="_blank" rel="noopener"><span>💬</span> Per WhatsApp kontaktieren</a>
-      <a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
-    </div>
-  </section>
-
-  <!-- LEGAL / FOOTER -->
-  <footer>
-    <div class="foot">
-      <div>&copy; <span id="y"></span> Agentu. Alle Rechte vorbehalten.</div>
-      <div class="links">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#impressum">Impressum</a>
-        <a href="#datenschutz">Datenschutz</a>
-        <a href="#agb">AGB</a>
-      </div>
-    </div></footer>
-
-  <script>
+<!-- NAV -->
+<nav aria-label="Hauptnavigation" class="nav">
+<div class="nav-inner">
+<div class="brand">
+<span aria-hidden="true" class="brand-mark"></span>
+<span class="brand-name">Agentu</span>
+</div>
+<button aria-expanded="false" aria-label="Menü öffnen" class="hamb" id="hamb">
+<svg aria-hidden="true" fill="none" height="26" viewbox="0 0 24 24" width="26">
+<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="nav-links" id="navLinks">
+<a href="#leistungen">Leistungen</a>
+<a href="#team">Team</a>
+<a href="#pakete">Pakete</a>
+<a href="#kontakt">Kontakt</a>
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<header class="hero wrap">
+<div class="hero-grid">
+<div>
+<h1 class="h1 reveal">Social Media<br/> <span style="background:linear-gradient(90deg,var(--brand-1),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">im easymode.</span> Agentu.</h1>
+<p class="lead reveal" style="transition-delay:.1s">Wake up call: Webseiten sind (bald) tot.</p>
+<p class="lead reveal" style="transition-delay:.1s">Heute wirst du auf Social Media gefunden, nicht gegoogelt. Wir machen dich sichtbar, relevant und unübersehbar - genau dort, wo Menschen nach dir suchen.</p>
+<div class="btns reveal" style="transition-delay:.2s">
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+</div>
+</div>
+<div class="hero-art reveal" id="art" style="transition-delay:.15s">
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+<span class="dot d1"></span>
+<span class="dot d2"></span>
+<span class="dot d3"></span>
+</div>
+</div>
+</header>
+<!-- WARUM -->
+<section class="wrap" id="warum">
+<h2 class="section-title reveal">Warum Agentu?</h2>
+<p class="muted reveal" style="max-width:820px">Große Agenturen sind wie Containerschiffe: langsam, unfelxibel &amp; teuer.</p>
+<p class="muted reveal" style="max-width:820px">Wir sind das Speedboot: schnell, effizient &amp; ... einfach fresh.</p>
+<p class="muted reveal" style="max-width:820px">Wir verstehen Marketing. In stürmischen Zeiten von KI und starkem Wellengang im digitalen Raum navigieren wir flexibel an der Wasseroberfläche, während Conteinerschiffe langsam untergehen.</p>
+<p class="muted reveal" style="max-width:820px">Unsere Passagiere kommen sicher an Land - und sehen dabei sogar noch verdammt gut aus.</p>
+<div class="features">
+<div class="feature reveal flip-card"><div class="flip-inner"><div class="flip-front">
+<h3>Schnelligkeit</h3>
+<p>Weniger Abstimmung, mehr Output. Iterationen in Tagen – nicht in Monaten.</p>
+</div><div class="flip-back"><h3>Schnelligkeit</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
+<div class="feature reveal flip-card" style="transition-delay:.06s"><div class="flip-inner"><div class="flip-front">
+<h3>KI‑Kompetenz</h3>
+<p>Wir nutzen Tools, keine Buzzwords. Automatisiert, messbar, skalierbar.</p>
+</div><div class="flip-back"><h3>KI‑Kompetenz</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
+<div class="feature reveal flip-card" style="transition-delay:.12s"><div class="flip-inner"><div class="flip-front">
+<h3>Direkter Kontakt</h3>
+<p>Kein Overhead, keine Zwischenebene – nur wir. Schnelle Entscheidungen.</p>
+</div><div class="flip-back"><h3>Direkter Kontakt</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
+</div>
+</section>
+<!-- LEISTUNGEN -->
+<section class="wrap" id="leistungen">
+<h2 class="section-title reveal">Leistungen</h2>
+<p class="muted reveal">Sechs Services – alle mit KI‑Turbo.</p>
+<div class="cards">
+<article class="card reveal flip-card"><div class="flip-inner"><div class="flip-front"><h3>Social Strategy</h3><p>KI‑gestützte Markenstrategien, klare Roadmaps, fundierte Zielgruppenarbeit.</p></div><div class="flip-back"><h3>Social Strategy</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.06s"><div class="flip-inner"><div class="flip-front"><h3>Content Creation</h3><p>Texte, Bilder, Videos – effizient produziert, kreativ inszeniert.</p></div><div class="flip-back"><h3>Content Creation</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.12s"><div class="flip-inner"><div class="flip-front"><h3>Performance &amp; Ads</h3><p>Intelligente Kampagnen mit Impact – von Setup bis Skalierung.</p></div><div class="flip-back"><h3>Performance &amp; Ads</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.18s"><div class="flip-inner"><div class="flip-front"><h3>Community Management</h3><p>Von Chatbots bis Krisenkommunikation – nah dran, schnell reagiert.</p></div><div class="flip-back"><h3>Community Management</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.24s"><div class="flip-inner"><div class="flip-front"><h3>KI‑Automation</h3><p>Prozesse, die laufen – Automationen für Content, Insights &amp; Support.</p></div><div class="flip-back"><h3>KI‑Automation</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.30s"><div class="flip-inner"><div class="flip-front"><h3>Consulting &amp; Workshops</h3><p>KI verstehen, richtig nutzen – Hands‑on, an echten Use‑Cases.</p></div><div class="flip-back"><h3>Consulting &amp; Workshops</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+</div>
+</section>
+<!-- TEAM -->
+<section class="wrap" id="team">
+<h2 class="section-title reveal">Team</h2>
+<div class="team">
+<div class="person reveal">
+<div aria-hidden="true" class="avatar merve"><img alt="Merve – Agentu Team" src="assets/team/merve-agentu-team.png"/></div>
+<div>
+<h4>Merve</h4>
+<p>Master in Produktmarketing &amp; Innovationsmanagement. Hebt Kanäle über die 10k‑Marke, erkennt Trends, bevor sie auf der For‑You‑Page landen – und übersetzt sie in messbares Wachstum.</p>
+</div>
+</div>
+<div class="person reveal" style="transition-delay:.06s">
+<div aria-hidden="true" class="avatar chris"><img alt="Chris – Agentu Team" src="assets/team/chris-agentu-team.jpg"/></div>
+<div>
+<h4>Chris</h4>
+<p>Master in Produktmarketing &amp; Innovationsmanagement. Enterprise‑Erfahrung ohne Enterprise‑Trägheit. Baut schlanke Content‑Maschinen mit klaren KPIs und sauberem Reporting.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- PAKETE / PREISE -->
+<section class="wrap" id="pakete">
+<h2 class="section-title reveal">Pakete &amp; Preise</h2>
+<div class="pricing">
+<div class="price reveal">
+<span class="chev">⌄</span>
+<span class="badge">🚀 Starter</span>
+<h4>Für schnellen Start</h4>
+<p>4 Posts/Monat, KI‑Strategie, 1 Ad‑Set</p>
+<div class="amount">ab 890 €</div>
+<div class="details"><ul>
+<li>1 Kanal Setup (Instagram oder TikTok)</li>
+<li>4 Posts/Monat (Mix aus Reels &amp; Feed)</li>
+<li>1 Werbeanzeige-Set inkl. A/B‑Variante</li>
+<li>Copywriting, Hashtags &amp; Community Light</li>
+<li>Basic Monitoring &amp; Monatsreport</li>
+</ul></div>
+<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
+</div>
+<div class="price reveal" style="transition-delay:.06s">
+<span class="chev">⌄</span>
+<span class="badge" style="background: color-mix(in oklab, var(--brand-2) 80%, white)">⚙️ Growth</span>
+<h4>Wachstum &amp; Learnings</h4>
+<p>8 Posts, 3 Ad‑Sets, Reporting</p>
+<div class="amount">ab 1.590 €</div>
+<div class="details"><ul>
+<li>2–3 Kanäle im Management</li>
+<li>8 Posts/Monat + 4 Story‑Pakete</li>
+<li>3 Werbeanzeige‑Sets inkl. Retargeting</li>
+<li>Content‑Plan &amp; Redaktionskalender</li>
+<li>Monatsreport mit Learnings &amp; Next Steps</li>
+</ul></div>
+<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
+</div>
+<div class="price reveal" style="transition-delay:.12s">
+<span class="chev">⌄</span>
+<span class="badge" style="background: linear-gradient(135deg, var(--brand-1), var(--brand-2))">🌐 Custom</span>
+<h4>Individuell &amp; flexibel</h4>
+<p>Individuelle Betreuung – exakt auf dein Setup zugeschnitten.</p>
+<div class="amount">auf Anfrage</div>
+<div class="details"><ul>
+<li>Audit &amp; Strategie‑Workshop</li>
+<li>Content‑Produktion vor Ort (Video/Foto)</li>
+<li>UGC/Creator‑Sourcing &amp; Influencersteuerung</li>
+<li>Always‑on Ads &amp; Funnel‑Setups</li>
+<li>Individuelle KPIs &amp; Dashboards</li>
+</ul></div>
+<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
+</div>
+</div>
+</section>
+<!-- KONTAKT -->
+<section class="wrap" id="kontakt">
+<h2 class="section-title reveal">Kontakt</h2>
+<p class="muted reveal" style="max-width:820px">Keine Lust auf leere Meetings? Schreib uns direkt – wir antworten schneller als dein letzter Agenturpartner.</p>
+<div class="contact-actions reveal" style="transition-delay:.08s">
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+</div>
+</section>
+<!-- LEGAL / FOOTER -->
+<footer>
+<div class="foot">
+<div>© <span id="y"></span> Agentu. Alle Rechte vorbehalten.</div>
+<div class="links">
+<a href="https://www.linkedin.com" rel="noopener" target="_blank">LinkedIn</a>
+<a href="#impressum">Impressum</a>
+<a href="#datenschutz">Datenschutz</a>
+<a href="#agb">AGB</a>
+</div>
+</div></footer>
+<script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
@@ -829,179 +770,48 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
       });
     });
   })();
-
-// ─── Flip Cards Enhancement ───────────────────────────────────────────────────
+</script>
+<script>
+// === Flip-card interactions and height stabilization ===
 (function(){
-  // Helper: make an element flip-enabled by wrapping its content
-  function makeFlip(el){
-    if(!el || el.classList.contains('flip-card')) return;
-    el.classList.add('flip-card');
-    // move padding to inner to stabilize 3D flip
-    (function(){
-      const cs = getComputedStyle(el);
-      el.style.setProperty('--flip-pad-top', cs.paddingTop);
-      el.style.setProperty('--flip-pad-right', cs.paddingRight);
-      el.style.setProperty('--flip-pad-bottom', cs.paddingBottom);
-      el.style.setProperty('--flip-pad-left', cs.paddingLeft);
-      el.classList.add('use-inner-padding');
-    })();
-    // keep original classes and padding; wrap content
-    const front = document.createElement('div');
-    front.className = 'flip-front';
-    // move children to front
-    while(el.firstChild){
-      front.appendChild(el.firstChild);
-    }
-    const back = document.createElement('div');
-    back.className = 'flip-back';
-    // Heading clone or simple fallback
-    let title = el.querySelector('h3,h4');
-    const heading = document.createElement('h3');
-    heading.textContent = (title && title.textContent ? title.textContent : 'Details');
-    const p = document.createElement('p');
-    p.className = 'muted';
-    p.textContent = 'Platz für deinen Rückseiten‑Text. Ersetze diesen Text.';
-    back.appendChild(heading);
-    back.appendChild(p);
-
-    const inner = document.createElement('div');
-    inner.className = 'flip-inner';
-    inner.appendChild(front);
-    inner.appendChild(back);
-    el.appendChild(inner);
-
-    // Accessibility
-    el.setAttribute('tabindex','0');
-    el.setAttribute('role','button');
-    el.setAttribute('aria-pressed','false');
-
-    // Click to toggle
-    const toggle = ()=>{
-      el.classList.toggle('flipped');
-      el.setAttribute('aria-pressed', el.classList.contains('flipped') ? 'true' : 'false');
-    };
-    el.addEventListener('click', (ev)=>{
-      // avoid toggling when clicking links/buttons inside
-      const t = ev.target;
-      if(t.closest('a,button')) return;
-      toggle();
+  const flipCards = Array.from(document.querySelectorAll('.flip-card'));
+  function setHeights(){
+    flipCards.forEach(card => {
+      const inner = card.querySelector('.flip-inner');
+      const front = card.querySelector('.flip-front');
+      const back = card.querySelector('.flip-back');
+      if (!inner || !front || !back) return;
+      // Reset to auto to measure natural front height
+      card.style.height = 'auto';
+      front.style.position = 'relative';
+      back.style.position = 'absolute';
+      // Measure the tallest face to avoid jumps
+      const h = Math.max(front.offsetHeight, back.offsetHeight);
+      card.style.height = h + 'px';
+      // Restore correct positions
+      front.style.position = 'absolute';
     });
-    el.addEventListener('keydown', (ev)=>{
-      if(ev.key === 'Enter' || ev.key === ' '){
-        ev.preventDefault();
-        toggle();
+  }
+  setHeights();
+  window.addEventListener('load', setHeights);
+  window.addEventListener('resize', () => { setHeights(); });
+
+  // Toggle on click/tap and allow keyboard access
+  flipCards.forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.addEventListener('click', (e) => {
+      // avoid toggling when clicking links inside cards
+      if (e.target.closest('a')) return;
+      card.classList.toggle('is-flipped');
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
       }
     });
-  }
-
-  // Apply to "Warum Agentu?" (three features) and "Leistungen" (six cards)
-  document.querySelectorAll('#warum .feature').forEach(makeFlip);
-  document.querySelectorAll('#leistungen .card').forEach(makeFlip);
-
-  // Height balance (optional): if back content grows later, ensure min-height keeps up
-  function balanceHeights(){
-    document.querySelectorAll('.flip-card').forEach(el=>{
-      // Reset any inline minHeight first
-      el.style.minHeight = '';
-      const inner = el.querySelector('.flip-inner');
-      if(!inner) return;
-      // Temporarily ensure fronts/backs can size naturally to measure
-      const front = el.querySelector('.flip-front');
-      const back = el.querySelector('.flip-back');
-      // Remove transforms to measure
-      const prev = inner.style.transform;
-      inner.style.transform = 'none';
-      // Let absolute children size themselves by making container position:relative (already) and reading scrollHeights
-      const maxH = Math.max(front.scrollHeight, back.scrollHeight);
-      // Keep at least existing computed height/min-height
-      const computed = getComputedStyle(el);
-      const baseMin = parseFloat(computed.minHeight) || 0;
-      el.style.minHeight = Math.max(baseMin, maxH) + 'px';
-      // Restore transform
-      inner.style.transform = prev;
-    });
-  }
-  const ready = ()=>balanceHeights();
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(ready); } else { ready(); }
-  window.addEventListener('load', ready, {once:true});
-  window.addEventListener('resize', ()=>{ clearTimeout(window.__flipRaf); window.__flipRaf = setTimeout(balanceHeights, 120); }, {passive:true});
-})();
-
-
-// ─── Mobile contact buttons: hide in NAV, show in HERO ─────────────────────────
-(function(){
-  const navWhats = document.querySelector('.nav a.pill.whats');
-  const navMail  = document.querySelector('.nav a.pill.mail');
-  function applyMobileState(){
-    const mobile = window.innerWidth <= 900;
-    [navWhats, navMail].forEach(a=>{
-      if(!a) return;
-      if(mobile){
-        a.style.display = 'none';
-        a.style.visibility = 'hidden';
-        a.setAttribute('aria-hidden','true');
-      }else{
-        a.style.display = '';
-        a.style.visibility = '';
-        a.removeAttribute('aria-hidden');
-      }
-    });
-  }
-  applyMobileState();
-  window.addEventListener('resize', ()=>{ clearTimeout(window.__navRaf); window.__navRaf = setTimeout(applyMobileState, 120); }, {passive:true});
-})();
-
-// ─── Normalize padding for flip cards to inner (prevents flip jitter) ──────────
-(function(){
-  function normalizePadding(el){
-    if(!el) return;
-    const cs = getComputedStyle(el);
-    el.style.setProperty('--flip-pad-top', cs.paddingTop);
-    el.style.setProperty('--flip-pad-right', cs.paddingRight);
-    el.style.setProperty('--flip-pad-bottom', cs.paddingBottom);
-    el.style.setProperty('--flip-pad-left', cs.paddingLeft);
-    el.classList.add('use-inner-padding');
-  }
-  // Run after flip init
-  requestAnimationFrame(()=>{
-    document.querySelectorAll('#warum .feature.flip-card, #leistungen .card.flip-card').forEach(normalizePadding);
   });
 })();
-
-
-// Ensure hero contact buttons come right after the last subtitle (lead)
-document.addEventListener('DOMContentLoaded', ()=>{
-  const textCol = document.querySelector('.hero .hero-grid > div:first-child');
-  if(!textCol) return;
-  const btns = textCol.querySelector('.btns');
-  const leads = textCol.querySelectorAll('.lead');
-  if(btns && leads.length){
-    const lastLead = leads[leads.length - 1];
-    if(btns.previousElementSibling !== lastLead){
-      lastLead.after(btns);
-    }
-    btns.style.marginTop = '10px';
-  }
-});
-
-</script>
-</body>
+</script></body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
