@@ -452,6 +452,26 @@
   padding-left: var(--flip-pad-left, 20px);
 }
 
+  
+/* ---- Padding restore for flip cards (no text flush to edges) ---- */
+#warum .feature.flip-card.use-inner-padding{ padding:20px !important; }
+#leistungen .card.flip-card.use-inner-padding{ padding:18px !important; }
+.flip-card.use-inner-padding .flip-front,
+.flip-card.use-inner-padding .flip-back{ padding: inherit !important; }
+/* Disable outer transform animations that fight with 3D flip */
+#warum .feature:hover,
+#warum .feature.flip-card:hover,
+#leistungen .card:hover,
+#leistungen .card.flip-card:hover{ transform:none !important; }
+
+  
+/* ---- Mobile: hide nav pills and prevent unexpected layout ---- */
+@media (max-width: 900px){
+  .nav .nav-links a.pill.whats,
+  .nav .nav-links a.pill.mail{ display:none !important; visibility:hidden !important; }
+  .hero .btns{ margin-top:10px !important; }
+}
+
   </style>
 
 <style id="theme-overrides">
@@ -947,6 +967,22 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
     document.querySelectorAll('#warum .feature.flip-card, #leistungen .card.flip-card').forEach(normalizePadding);
   });
 })();
+
+
+// Ensure hero contact buttons come right after the last subtitle (lead)
+document.addEventListener('DOMContentLoaded', ()=>{
+  const textCol = document.querySelector('.hero .hero-grid > div:first-child');
+  if(!textCol) return;
+  const btns = textCol.querySelector('.btns');
+  const leads = textCol.querySelectorAll('.lead');
+  if(btns && leads.length){
+    const lastLead = leads[leads.length - 1];
+    if(btns.previousElementSibling !== lastLead){
+      lastLead.after(btns);
+    }
+    btns.style.marginTop = '10px';
+  }
+});
 
 </script>
 </body>
