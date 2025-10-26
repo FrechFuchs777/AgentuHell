@@ -429,6 +429,29 @@
 .features .feature.flip-card:hover{ transform:none !important; }
 .flip-card .flip-inner{ will-change: transform; }
 
+  
+/* Mobile: ensure NAV contact pills never show above the hero */
+@media (max-width: 900px){
+  .nav a.pill.whats,
+  .nav a.pill.mail{ display:none !important; visibility:hidden !important; }
+  /* Keep hero buttons tight under subtitle */
+  .hero .btns{ margin-top: 8px !important; }
+}
+
+  
+/* Flip stability on Warum-Agentu features: disable outer transforms */
+.features .feature.flip-card{ transition: box-shadow .2s ease !important; transform:none !important; }
+.features .feature.flip-card:hover{ transform:none !important; }
+/* Ensure front/back take padding while container has none when flip is enabled */
+.flip-card.use-inner-padding{ padding:0 !important; }
+.flip-card.use-inner-padding .flip-front,
+.flip-card.use-inner-padding .flip-back{
+  padding-top: var(--flip-pad-top, 20px);
+  padding-right: var(--flip-pad-right, 20px);
+  padding-bottom: var(--flip-pad-bottom, 20px);
+  padding-left: var(--flip-pad-left, 20px);
+}
+
   </style>
 
 <style id="theme-overrides">
@@ -793,6 +816,15 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
   function makeFlip(el){
     if(!el || el.classList.contains('flip-card')) return;
     el.classList.add('flip-card');
+    // move padding to inner to stabilize 3D flip
+    (function(){
+      const cs = getComputedStyle(el);
+      el.style.setProperty('--flip-pad-top', cs.paddingTop);
+      el.style.setProperty('--flip-pad-right', cs.paddingRight);
+      el.style.setProperty('--flip-pad-bottom', cs.paddingBottom);
+      el.style.setProperty('--flip-pad-left', cs.paddingLeft);
+      el.classList.add('use-inner-padding');
+    })();
     // keep original classes and padding; wrap content
     const front = document.createElement('div');
     front.className = 'flip-front';
@@ -873,6 +905,47 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
   if(document.fonts && document.fonts.ready){ document.fonts.ready.then(ready); } else { ready(); }
   window.addEventListener('load', ready, {once:true});
   window.addEventListener('resize', ()=>{ clearTimeout(window.__flipRaf); window.__flipRaf = setTimeout(balanceHeights, 120); }, {passive:true});
+})();
+
+
+// ─── Mobile contact buttons: hide in NAV, show in HERO ─────────────────────────
+(function(){
+  const navWhats = document.querySelector('.nav a.pill.whats');
+  const navMail  = document.querySelector('.nav a.pill.mail');
+  function applyMobileState(){
+    const mobile = window.innerWidth <= 900;
+    [navWhats, navMail].forEach(a=>{
+      if(!a) return;
+      if(mobile){
+        a.style.display = 'none';
+        a.style.visibility = 'hidden';
+        a.setAttribute('aria-hidden','true');
+      }else{
+        a.style.display = '';
+        a.style.visibility = '';
+        a.removeAttribute('aria-hidden');
+      }
+    });
+  }
+  applyMobileState();
+  window.addEventListener('resize', ()=>{ clearTimeout(window.__navRaf); window.__navRaf = setTimeout(applyMobileState, 120); }, {passive:true});
+})();
+
+// ─── Normalize padding for flip cards to inner (prevents flip jitter) ──────────
+(function(){
+  function normalizePadding(el){
+    if(!el) return;
+    const cs = getComputedStyle(el);
+    el.style.setProperty('--flip-pad-top', cs.paddingTop);
+    el.style.setProperty('--flip-pad-right', cs.paddingRight);
+    el.style.setProperty('--flip-pad-bottom', cs.paddingBottom);
+    el.style.setProperty('--flip-pad-left', cs.paddingLeft);
+    el.classList.add('use-inner-padding');
+  }
+  // Run after flip init
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('#warum .feature.flip-card, #leistungen .card.flip-card').forEach(normalizePadding);
+  });
 })();
 
 </script>
