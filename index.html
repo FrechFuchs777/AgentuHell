@@ -414,6 +414,21 @@
 /* Make features a bit taller so both sides fit comfortably */
 .feature{ min-height: 148px; }
 
+  
+/* Mobile fix: hide any contact pills in the NAV completely */
+@media (max-width: 900px){
+  .nav a.pill.whats,
+  .nav a.pill.mail{ display:none !important; }
+  /* Ensure hero buttons sit tight under the subtitle */
+  .hero .lead + .lead + .btns{ margin-top: 8px; }
+}
+
+  
+/* Flip stability for Warum-Agentu features */
+.features .feature.flip-card{ transition: box-shadow .2s ease !important; }
+.features .feature.flip-card:hover{ transform:none !important; }
+.flip-card .flip-inner{ will-change: transform; }
+
   </style>
 
 <style id="theme-overrides">
@@ -854,7 +869,9 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
       inner.style.transform = prev;
     });
   }
-  balanceHeights();
+  const ready = ()=>balanceHeights();
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(ready); } else { ready(); }
+  window.addEventListener('load', ready, {once:true});
   window.addEventListener('resize', ()=>{ clearTimeout(window.__flipRaf); window.__flipRaf = setTimeout(balanceHeights, 120); }, {passive:true});
 })();
 
