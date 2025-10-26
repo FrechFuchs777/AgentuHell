@@ -498,6 +498,24 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
 .feature.flip-card, .card.flip-card{ overflow:hidden; }
 .feature.flip-card .flip-front, .feature.flip-card .flip-back{ background:inherit; border-radius: inherit; }
 .card.flip-card .flip-front, .card.flip-card .flip-back{ background:inherit; border-radius: inherit; }
+</style><style>
+/* === Overrides #2 (2025-10-26): remove blue stripe on mobile === */
+@media (max-width: 700px){
+  .hero-art{ display:none !important; }
+}
+
+/* Ensure feature flip-cards behave exactly like 'card' components */
+.feature.flip-card{ position:relative; }
+.feature.flip-card .flip-front, .feature.flip-card .flip-back{ padding: inherit; }
+</style><style>
+/* === Override: Make the three tiles under "Warum Agentu?" white (like Leistungen) === */
+#warum .card, #warum .service-card, #warum .tile, #warum .kachel {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #1f2937 !important; /* slate-800 for contrast */
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04) !important;
+}
 </style></head>
 <body>
 <!-- NAV -->
@@ -552,18 +570,18 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
 <p class="muted reveal" style="max-width:820px">Wir verstehen Marketing. In stürmischen Zeiten von KI und starkem Wellengang im digitalen Raum navigieren wir flexibel an der Wasseroberfläche, während Conteinerschiffe langsam untergehen.</p>
 <p class="muted reveal" style="max-width:820px">Unsere Passagiere kommen sicher an Land - und sehen dabei sogar noch verdammt gut aus.</p>
 <div class="features">
-<div class="feature reveal flip-card"><div class="flip-inner"><div class="flip-front">
+<article class="card reveal flip-card"><div class="flip-inner"><div class="flip-front">
 <h3>Schnelligkeit</h3>
 <p>Weniger Abstimmung, mehr Output. Iterationen in Tagen – nicht in Monaten.</p>
-</div><div class="flip-back"><h3>Schnelligkeit</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
-<div class="feature reveal flip-card" style="transition-delay:.06s"><div class="flip-inner"><div class="flip-front">
+</div><div class="flip-back"><h3>Schnelligkeit</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.06s"><div class="flip-inner"><div class="flip-front">
 <h3>KI‑Kompetenz</h3>
 <p>Wir nutzen Tools, keine Buzzwords. Automatisiert, messbar, skalierbar.</p>
-</div><div class="flip-back"><h3>KI‑Kompetenz</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
-<div class="feature reveal flip-card" style="transition-delay:.12s"><div class="flip-inner"><div class="flip-front">
+</div><div class="flip-back"><h3>KI‑Kompetenz</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
+<article class="card reveal flip-card" style="transition-delay:.12s"><div class="flip-inner"><div class="flip-front">
 <h3>Direkter Kontakt</h3>
 <p>Kein Overhead, keine Zwischenebene – nur wir. Schnelle Entscheidungen.</p>
-</div><div class="flip-back"><h3>Direkter Kontakt</h3><p>— Rückseite: Text hier einfügen —</p></div></div></div>
+</div><div class="flip-back"><h3>Direkter Kontakt</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
 </div>
 </section>
 <!-- LEISTUNGEN -->
