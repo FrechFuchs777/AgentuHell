@@ -582,7 +582,46 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
   border: 1px solid rgba(0,0,0,0.06) !important;
   box-shadow: 0 6px 24px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04) !important;
 }
-</style></head>
+</style><style>
+/* === Mobile overrides inserted by ChatGPT (Agentu-Buntl-mobilefix) === */
+@media (max-width: 768px) {
+  /* Ensure mobile background matches desktop */
+  body,
+  .site-bg,
+  .bg-gradient,
+  .page,
+  .app {
+    background: linear-gradient(180deg, #F4F4F5 0%, #E5E7EB 50%, #D1D5DB 100%) !important;
+    background-image: linear-gradient(180deg, #F4F4F5 0%, #E5E7EB 50%, #D1D5DB 100%) !important;
+    background-color: transparent !important;
+  }
+
+  /* Burger / Hamburger icon color override */
+  .hamburger,
+  .burger,
+  .menu-toggle,
+  .mobile-menu-button,
+  .nav-toggle,
+  .menu-btn {
+    color: var(--brand-1) !important;
+  }
+  .hamburger span,
+  .burger span,
+  .menu-toggle span,
+  .menu-btn span {
+    background-color: var(--brand-1) !important;
+  }
+  /* If burger is an SVG */
+  .hamburger svg path,
+  .burger svg path,
+  .menu-toggle svg path,
+  .menu-btn svg path {
+    fill: var(--brand-1) !important;
+    stroke: var(--brand-1) !important;
+  }
+}
+</style>
+</head>
 <body>
 <!-- NAV -->
 <nav aria-label="Hauptnavigation" class="nav">
