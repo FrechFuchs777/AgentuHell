@@ -896,5 +896,20 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
     });
   });
 })();
-</script></body>
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var img = document.querySelector('img.brand-logo');
+  if(!img) return;
+  img.addEventListener('error', function() {
+    if (img.src.endsWith('IMG_6284.PNG')) {
+      img.src = 'assets/team/IMG_6284.PNG';
+    } else if (img.src.endsWith('IMG_6284.png')) {
+      img.src = '/assets/team/IMG_6284.png';
+    }
+  });
+});
+</script>
+
+</body>
 </html>
