@@ -634,13 +634,14 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
   transition: opacity .2s ease-out;
 }
 </style>
+<link rel="preload" as="image" href="assets/team/IMG_6284.PNG">
 </head>
 <body>
 <!-- NAV -->
 <nav aria-label="Hauptnavigation" class="nav">
 <div class="nav-inner">
 <div class="brand">
-<img src="IMG_6284.PNG" alt="Agentu Logo" class="brand-logo"/>
+<img src="assets/team/IMG_6284.PNG" alt="Agentu Logo" class="brand-logo"/ onerror="this.onerror=null; this.src='/assets/team/IMG_6284.PNG'; this.classList.add('is-loaded');" loading="eager" decoding="async" fetchpriority="high">
 </div>
 <button aria-expanded="false" aria-label="Menü öffnen" class="hamb" id="hamb">
 <svg aria-hidden="true" fill="none" height="26" viewbox="0 0 24 24" width="26">
@@ -980,5 +981,23 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 </script>
 
+
+<script>
+(function(){
+  var img = document.querySelector('header img.logo, nav img.logo, img.logo');
+  if(!img) return;
+  function show(){ img.classList.add('is-loaded'); }
+  function hide(){ img.style.display = 'none'; }
+  if (img.complete) {
+    if (img.naturalWidth > 0) show(); else { /* try swap to fallback if not already */ if(!img.src.includes('/assets/')) img.src = '/assets/team/IMG_6284.PNG'; }
+  } else {
+    img.addEventListener('load', show, {once:true});
+    img.addEventListener('error', hide, {once:true});
+  }
+  // ultimate fallback: unhide after 1000ms to avoid staying invisible
+  setTimeout(function(){ if (!img.classList.contains('is-loaded')) { img.style.visibility = 'visible'; img.style.opacity = 1; } }, 1000);
+})();
+</script>
 </body>
+
 </html>
