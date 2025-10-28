@@ -621,6 +621,19 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
   }
 }
 </style>
+<link rel="preload" as="image" href="/assets/team/IMG_6284.PNG">
+<style>
+/* Prevent broken-icon flash on initial load */
+img.logo, img[class*="logo"], .logo img {
+  visibility: hidden;
+  opacity: 0;
+}
+img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .2s ease-out;
+}
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -948,6 +961,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+</script>
+
+
+<script>
+(function(){
+  var sel = 'header img.logo, header img[class*="logo"], header .logo img, nav img.logo, nav img[class*="logo"], nav .logo img, img.logo, .logo img';
+  var img = document.querySelector(sel);
+  if(!img) return;
+  function show(){ img.classList.add('is-loaded'); }
+  function hideOnError(){ img.style.display = 'none'; }
+  if (img.complete) {
+    if (img.naturalWidth > 0) show(); else hideOnError();
+  } else {
+    img.addEventListener('load', show, { once:true });
+    img.addEventListener('error', hideOnError, { once:true });
+  }
+})();
 </script>
 
 </body>
