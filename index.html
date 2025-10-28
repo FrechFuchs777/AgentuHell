@@ -635,6 +635,49 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 }
 </style>
 <link rel="preload" as="image" href="assets/team/IMG_6284.PNG">
+<style>
+/* === Responsive overrides (centering logo mobile, burger color, white bg, desktop align) === */
+@media (max-width: 768px) {
+  /* 3) Mobile background white like desktop */
+  html, body, .site-bg, .bg-gradient, .page, .app, .hero, header.hero, .wrap {
+    background: #fff !important;
+    background-image: none !important;
+    background-color: #fff !important;
+  }
+  /* 1) Center logo in the header */
+  .nav-inner {
+    position: relative !important;
+    justify-content: center !important;
+  }
+  .brand {
+    margin: 0 auto !important;
+  }
+  .brand img { 
+    display: block; 
+    margin: 0 auto; 
+  }
+  /* 2) Burger on right with same green */
+  #hamb, .hamb {
+    display: inline-grid !important;
+    place-items: center !important;
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--brand-1, #3C7D7A) !important;
+  }
+  #hamb svg, #hamb path, .hamb svg, .hamb path {
+    color: var(--brand-1, #3C7D7A) !important;
+    stroke: var(--brand-1, #3C7D7A) !important;
+  }
+}
+@media (min-width: 769px) {
+  /* Desktop: nudge logo slightly left to align with first-section title */
+  .brand { 
+    margin-left: -10px; 
+  }
+}
+</style>
 </head>
 <body>
 <!-- NAV -->
