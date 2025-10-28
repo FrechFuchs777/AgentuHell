@@ -678,6 +678,44 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
   }
 }
 </style>
+<style>
+/* === Refined header alignment === */
+@media (max-width: 768px) {
+  /* Center the brand/logo perfectly */
+  .nav-inner {
+    position: relative !important;
+    justify-content: center !important;
+  }
+  .brand {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin: 0 !important;
+  }
+  /* Keep burger on the right and in brand green */
+  #hamb, .hamb {
+    display: inline-grid !important;
+    place-items: center !important;
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: var(--brand-1, #3C7D7A) !important;
+  }
+  #hamb svg, #hamb path, .hamb svg, .hamb path {
+    color: var(--brand-1, #3C7D7A) !important;
+    stroke: var(--brand-1, #3C7D7A) !important;
+  }
+}
+@media (min-width: 769px) {
+  /* Move logo a bit further left to align with first section title */
+  .brand {
+    position: static !important;
+    transform: none !important;
+    margin-left: -24px !important; /* was -10px */
+  }
+}
+</style>
 </head>
 <body>
 <!-- NAV -->
