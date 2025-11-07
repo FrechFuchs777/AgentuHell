@@ -59,12 +59,10 @@
     }
     .brand{display:flex; align-items:center; gap:.65rem; font-weight:800; letter-spacing:.2px}
     .brand-logo{
-      height:72px; width:auto; object-fit:contain; display:block;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,.05));
-    }
+      height: clamp(36px, 6.5vw, 56px); width:auto; max-height:64px; object-fit:contain; display:block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.05));}
     /* Visually enlarge logo by +200% without altering layout */
     .brand{overflow:visible; position:relative;}
-    .brand-logo{transform:scale(2); transform-origin:left center;}
+    
 
     
     .nav-links{display:flex; align-items:center; gap:18px; padding-left: clamp(24px, 6vw, 120px);}
