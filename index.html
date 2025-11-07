@@ -633,6 +633,38 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 }
 </style>
 <link rel="preload" as="image" href="assets/team/IMG_6284.PNG">
+
+<style>
+nav a, .nav a, .nav-link {
+  text-decoration: none !important;
+  font-weight: 600;
+}
+nav a:hover, .nav a:focus, .nav-link:hover, .nav-link:focus {
+  text-decoration: none !important;
+  opacity: .9;
+}
+</style>
+
+
+<style>
+/* Remove underline from button-like contact links */
+a.btn, a.button, a.cta, a.contact-btn,
+.btn a, .button a, .cta a, .contact-btn a,
+.btn, .button, .cta, .contact-btn,
+a[href^="mailto:"], a[href*="wa.me"], a[href*="whatsapp"],
+a[href*="api.whatsapp.com"] {
+  text-decoration: none !important;
+  font-weight: 600;
+}
+a.btn:hover, a.button:hover, a.cta:hover, a.contact-btn:hover,
+.btn:hover, .button:hover, .cta:hover, .contact-btn:hover,
+a[href^="mailto:"]:hover, a[href*="wa.me"]:hover, a[href*="whatsapp"]:hover,
+a[href*="api.whatsapp.com"]:hover {
+  text-decoration: none !important;
+  opacity: .92;
+}
+</style>
+
 </head>
 <body>
 <!-- NAV -->
@@ -647,12 +679,12 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 </svg>
 </button>
 <div class="nav-links" id="navLinks">
-<a href="#leistungen">Leistungen</a>
+
 <a href="#team">Team</a>
 <a href="#pakete">Pakete</a>
 <a href="#kontakt">Kontakt</a>
-<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
-<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> WhatsApp</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Mail</a>
 </div>
 </div>
 </nav>
@@ -664,8 +696,8 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 <p class="lead reveal" style="transition-delay:.1s">Wake up call: Webseiten sind (bald) tot.</p>
 <p class="lead reveal" style="transition-delay:.1s">Heute wirst du auf Social Media gefunden, nicht gegoogelt. Wir machen dich sichtbar, relevant und unübersehbar - genau dort, wo Menschen nach dir suchen.</p>
 <div class="btns reveal" style="transition-delay:.2s">
-<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
-<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> WhatsApp</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Mail</a>
 </div>
 </div>
 <div class="hero-art reveal" id="art" style="transition-delay:.15s">
@@ -701,18 +733,7 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 </div>
 </section>
 <!-- LEISTUNGEN -->
-<section class="wrap" id="leistungen">
-<h2 class="section-title reveal">Leistungen</h2>
-<p class="muted reveal">Sechs Services – alle mit KI‑Turbo.</p>
-<div class="cards">
-<article class="card reveal flip-card"><div class="flip-inner"><div class="flip-front"><h3>Social Strategy</h3><p>KI‑gestützte Markenstrategien, klare Roadmaps, fundierte Zielgruppenarbeit.</p></div><div class="flip-back"><h3>Social Strategy</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-<article class="card reveal flip-card" style="transition-delay:.06s"><div class="flip-inner"><div class="flip-front"><h3>Content Creation</h3><p>Texte, Bilder, Videos – effizient produziert, kreativ inszeniert.</p></div><div class="flip-back"><h3>Content Creation</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-<article class="card reveal flip-card" style="transition-delay:.12s"><div class="flip-inner"><div class="flip-front"><h3>Performance &amp; Ads</h3><p>Intelligente Kampagnen mit Impact – von Setup bis Skalierung.</p></div><div class="flip-back"><h3>Performance &amp; Ads</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-<article class="card reveal flip-card" style="transition-delay:.18s"><div class="flip-inner"><div class="flip-front"><h3>Community Management</h3><p>Von Chatbots bis Krisenkommunikation – nah dran, schnell reagiert.</p></div><div class="flip-back"><h3>Community Management</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-<article class="card reveal flip-card" style="transition-delay:.24s"><div class="flip-inner"><div class="flip-front"><h3>KI‑Automation</h3><p>Prozesse, die laufen – Automationen für Content, Insights &amp; Support.</p></div><div class="flip-back"><h3>KI‑Automation</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-<article class="card reveal flip-card" style="transition-delay:.30s"><div class="flip-inner"><div class="flip-front"><h3>Consulting &amp; Workshops</h3><p>KI verstehen, richtig nutzen – Hands‑on, an echten Use‑Cases.</p></div><div class="flip-back"><h3>Consulting &amp; Workshops</h3><p>— Rückseite: Text hier einfügen —</p></div></div></article>
-</div>
-</section>
+
 <!-- TEAM -->
 <section class="wrap" id="team">
 <h2 class="section-title reveal">Team</h2>
@@ -789,8 +810,8 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 <h2 class="section-title reveal">Kontakt</h2>
 <p class="muted reveal" style="max-width:820px">Keine Lust auf leere Meetings? Schreib uns direkt – wir antworten schneller als dein letzter Agenturpartner.</p>
 <div class="contact-actions reveal" style="transition-delay:.08s">
-<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> Per WhatsApp kontaktieren</a>
-<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Per Mail kontaktieren</a>
+<a class="pill whats" href="https://wa.me/436604240704" rel="noopener" target="_blank"><span>💬</span> WhatsApp</a>
+<a class="pill mail" href="mailto:social@agentu.at"><span>✉️</span> Mail</a>
 </div>
 </section>
 <!-- LEGAL / FOOTER -->
