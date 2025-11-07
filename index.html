@@ -11,20 +11,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <style>
     :root{
-      --brand-1:#3C7D7A; /* aus Bild 22:09:41 (helles Blau) */
-      --brand-2:#E58FA0; 
-      --rose:#E58FA0; 
-      --teal:#3C7D7A; 
-      --mustard:#D6A23A; 
-      --forest:#2F6B3F; 
-      --brick:#B13A33; 
-      --burgundy:#8F2A2B; 
-      --cream:#FFF8F2; 
-      --bg-accent:#FCF6F4; 
-      --soft:#F5F1EE; /* aus Bild 22:09:30 (Lavendel-Grau) */
-      --ink:#1f2430;
+      --brand-1:#B0E2FF; /* aus Bild 22:09:41 (helles Blau) */
+      --brand-2:#FFF68F; 
+      --rose:#B0E2FF; 
+      --teal:#B0E2FF; 
+      --mustard:#FFF68F; 
+      --forest:#B0E2FF; 
+      --brick:#FFF68F; 
+      --burgundy:#B0E2FF; 
+      --cream:#ffffff; 
+      --bg-accent:#FFFFFF; 
+      --soft:#F2FAFF; /* aus Bild 22:09:30 (Lavendel-Grau) */
+      --ink:#0f1420;
       --ink-soft:#3b4152;
-      --bg:#f7f9fb;
+      --bg:#F9FDFF;
       --white:#ffffff;
       --muted:#8c91a1;
       --shadow: 0 8px 24px rgba(31,36,48,.08);
@@ -35,13 +35,13 @@
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
+    body{margin:0; font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; color:var(--ink); background: radial-gradient(60% 50% at -10% -10%, rgba(176,226,255,0.45), transparent 60%), radial-gradient(50% 50% at 110% 0%, rgba(255,246,143,0.45), transparent 60%), linear-gradient(180deg, #ffffff 0%, #fafdff 100%); background-attachment: fixed; position:relative; }
       margin:0;
       font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--ink);
-      background: linear-gradient(180deg, #F4F4F5 0%, #E5E7EB 50%, #D1D5DB 100%);
+      
       background-attachment: fixed;
-     background: radial-gradient(120% 120% at -10% 0%, rgba(229,143,160,.20), transparent 40%), radial-gradient(100% 100% at 120% 10%, rgba(60,125,122,.16), transparent 45%), radial-gradient(120% 100% at 10% 120%, rgba(214,162,58,.18), transparent 50%), linear-gradient(180deg, #fff, var(--bg-accent)); position:relative; }
+      position:relative; }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     button{font-family:inherit}
@@ -64,14 +64,14 @@
     }
     /* Visually enlarge logo by +200% without altering layout */
     .brand{overflow:visible; position:relative;}
-    .brand-logo{transform:scale(3); transform-origin:left center;}
+    .brand-logo{transform:scale(2); transform-origin:left center;}
 
     
     .nav-links{display:flex; align-items:center; gap:18px; padding-left: clamp(24px, 6vw, 120px);}
     .nav-links a{padding:10px 12px; border-radius:12px; font-weight:500; color:var(--ink-soft)}
     .nav-links a:hover{background:rgba(169,193,213,.18); color:var(--ink)}
     .cta{
-      --c1: var(--rose); --c2: var(--mustard);
+      --c1: var(--brand-1); --c2: var(--brand-2);
       background:linear-gradient(135deg, var(--c1), var(--c2));
       color:#0f1420; font-weight:700; padding:12px 16px; border:none; border-radius:14px; cursor:pointer;
       box-shadow: 0 12px 30px rgba(229,143,160,.35);
@@ -459,9 +459,9 @@ e to ~1cm height band and keep it crisp */
 </style>
 <style id="theme-overrides">
   :root{
-    --bg-lilac-1:#FFFFFF; --bg-lilac-2:#F5EEFF; --bg-lilac-3:#E9DBFF;
-    --card-orange-1:#FFF7EF; --card-orange-2:#FFE7CC; --card-orange-3:#FFB97E;
-    --field-orange-1:#FFFBF7; --field-orange-2:#FFF1E4; --field-orange-3:#FFE1C6;
+    --bg-lilac-1:#FFFFFF; --bg-lilac-2:#EAF8FF; --bg-lilac-3:#D6F0FF;
+    --card-orange-1:#FFFDEA; --card-orange-2:#FFFAD1; --card-orange-3:#FFF68F;
+    --field-orange-1:#FFFFFB; --field-orange-2:#FFFDEA; --field-orange-3:#FFF1CC;
   }
   body{
     background: linear-gradient(180deg, var(--bg-lilac-1) 0%, var(--bg-lilac-2) 55%, var(--bg-lilac-3) 100%) !important;
@@ -641,7 +641,7 @@ img.logo.is-loaded, img[class*="logo"].is-loaded, .logo img.is-loaded {
 <nav aria-label="Hauptnavigation" class="nav">
 <div class="nav-inner">
 <div class="brand">
-<img src="assets/team/IMG_6284.PNG" alt="Agentu Logo" class="brand-logo"/ onerror="this.onerror=null; this.src='/assets/team/IMG_6284.PNG'; this.classList.add('is-loaded');" loading="eager" decoding="async" fetchpriority="high">
+<img class="brand-logo" src="assets/logo/logo-agentu.png" alt="Agentu Logo" loading="eager" decoding="async" fetchpriority="high">
 </div>
 <button aria-expanded="false" aria-label="Menü öffnen" class="hamb" id="hamb">
 <svg aria-hidden="true" fill="none" height="26" viewbox="0 0 24 24" width="26">
