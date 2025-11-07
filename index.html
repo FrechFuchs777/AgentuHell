@@ -695,6 +695,23 @@ body, main, section, header, nav, footer, .container, .wrapper {
 }
 </style>
 
+
+<style id="override-2025-11-07-gradient">
+/* Make 'Warum Agentu' three flip-cards and the two 'Team' person tiles
+   use the same background gradient as the pricing cards (#fff -> #7FCDDA). */
+#warum .card{ 
+  background: linear-gradient(180deg, #FFFFFF 0%, #7FCDDA 100%) !important;
+}
+#warum .card .flip-front, 
+#warum .card .flip-back{
+  background: inherit !important;
+}
+
+#team .person{
+  background: linear-gradient(180deg, #FFFFFF 0%, #7FCDDA 100%) !important;
+}
+</style>
+
 </head>
 <body>
 <!-- NAV -->
