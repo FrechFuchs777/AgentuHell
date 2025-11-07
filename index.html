@@ -665,6 +665,36 @@ a[href*="api.whatsapp.com"]:hover {
 }
 </style>
 
+
+<style>
+/* (1) Desktop: smaller gap between header and first section (~1cm ≈ 38px) */
+@media (min-width: 1024px){
+  main > section:first-of-type,
+  body > section:first-of-type,
+  .hero:first-of-type,
+  section#hero:first-of-type {
+    margin-top: 38px !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* (2) Header contact buttons: white text */
+nav a.btn, nav a.button, nav a.cta, nav a.contact-btn,
+nav .btn, nav .button, nav .cta, nav .contact-btn,
+nav a[href^="mailto:"], nav a[href*="wa.me"],
+nav a[href*="whatsapp"], nav a[href*="api.whatsapp.com"] {
+  color: #ffffff !important;
+}
+
+/* (3) Global background: pure white */
+html, body {
+  background: #ffffff !important;
+}
+body, main, section, header, nav, footer, .container, .wrapper {
+  background-color: #ffffff !important;
+}
+</style>
+
 </head>
 <body>
 <!-- NAV -->
