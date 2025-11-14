@@ -737,10 +737,24 @@ section[id*="leistung"] .card, section[id*="leistung"] .service-card, section[id
 }
 </style><style>
 /* Video front styling for "Warum Agentu" flip-cards */
-#warum .flip-front.video-front{
+/* Improved video flip-card behaviour under "Warum Agentu" */
+/* Remove inner padding so video can fill the entire card */
+#warum .card.flip-card{
   padding: 0;
 }
+/* Front face that holds the video: no padding, sits above gradients */
+#warum .flip-front.video-front{
+  padding: 0;
+  z-index: 1;
+}
+/* Back face (Text) gets a comfortable padding again */
+#warum .card.flip-card .flip-back{
+  padding: 18px;
+}
+/* Video itself fills the whole front and is nicely cropped */
 #warum .flip-front.video-front .feature-video{
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
