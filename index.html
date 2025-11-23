@@ -362,10 +362,10 @@
     .price .chev{
       position:absolute; top:18px; right:18px; font-size:18px; transition: transform .25s ease; opacity:.7;
     }
-    .price.open .details{ max-height: 420px; opacity:1; transform: translateY(0); margin-top:10px }
+    .price.open .details{ max-height: 2000px; opacity:1; transform: translateY(0); margin-top:10px }
     .price.open .chev{ transform: rotate(180deg) }
     @media (hover:hover) and (pointer:fine){
-      .price:hover .details{ max-height: 420px; opacity:1; transform: translateY(0); margin-top:10px }
+      .price:hover .details{ max-height: 2000px; opacity:1; transform: translateY(0); margin-top:10px }
       .price:hover .chev{ transform: rotate(180deg) }
     }
 
@@ -387,7 +387,25 @@
     .badge{display:inline-block; background: color-mix(in oklab, var(--brand-1) 75%, white); padding:8px 12px; border-radius:999px; font-weight:700; font-size:14px}
     .price h4{margin:10px 0 8px; font-size:20px}
     .price p{color:var(--muted); margin:0 0 16px}
-    .price .amount{font-size:28px; font-weight:800}
+    .price .amount{
+      font-size:28px;
+      font-weight:800;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:baseline;
+      gap:8px;
+      margin:8px 0 4px;
+    }
+    .price .amount .old-price{
+      font-size:16px;
+      font-weight:600;
+      text-decoration: line-through;
+      opacity:.6;
+    }
+    .price .amount .per{
+      font-size:16px;
+      font-weight:500;
+    }
     .price .cta{margin-top:12px}
     @media(max-width: 1080px){ .pricing{grid-template-columns: repeat(2, 1fr)} }
     @media(max-width: 700px){ .pricing{grid-template-columns: 1fr} }
@@ -966,54 +984,73 @@ body, main, section, header, nav, footer, .container, .wrapper {
 
 <!-- PAKETE / PREISE -->
 <section class="wrap" id="pakete">
-<h2 class="section-title reveal">Pakete &amp; Preise</h2>
-<div class="pricing">
-<div class="price reveal">
-<span class="chev">⌄</span>
-<span class="badge">🚀 Starter</span>
-<h4>Für schnellen Start</h4>
-<p>4 Posts/Monat, KI‑Strategie, 1 Ad‑Set</p>
-<div class="amount">ab 890 €</div>
-<div class="details"><ul>
-<li>1 Kanal Setup (Instagram oder TikTok)</li>
-<li>4 Posts/Monat (Mix aus Reels &amp; Feed)</li>
-<li>1 Werbeanzeige-Set inkl. A/B‑Variante</li>
-<li>Copywriting, Hashtags &amp; Community Light</li>
-<li>Basic Monitoring &amp; Monatsreport</li>
-</ul></div>
-<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-</div>
-<div class="price reveal" style="transition-delay:.06s">
-<span class="chev">⌄</span>
-<span class="badge" style="background: color-mix(in oklab, var(--brand-2) 80%, white)">⚙️ Growth</span>
-<h4>Wachstum &amp; Learnings</h4>
-<p>8 Posts, 3 Ad‑Sets, Reporting</p>
-<div class="amount">ab 1.590 €</div>
-<div class="details"><ul>
-<li>2–3 Kanäle im Management</li>
-<li>8 Posts/Monat + 4 Story‑Pakete</li>
-<li>3 Werbeanzeige‑Sets inkl. Retargeting</li>
-<li>Content‑Plan &amp; Redaktionskalender</li>
-<li>Monatsreport mit Learnings &amp; Next Steps</li>
-</ul></div>
-<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-</div>
-<div class="price reveal" style="transition-delay:.12s">
-<span class="chev">⌄</span>
-<span class="badge" style="background: linear-gradient(135deg, var(--brand-1), var(--brand-2))">🌐 Custom</span>
-<h4>Individuell &amp; flexibel</h4>
-<p>Individuelle Betreuung – exakt auf dein Setup zugeschnitten.</p>
-<div class="amount">auf Anfrage</div>
-<div class="details"><ul>
-<li>Audit &amp; Strategie‑Workshop</li>
-<li>Content‑Produktion vor Ort (Video/Foto)</li>
-<li>UGC/Creator‑Sourcing &amp; Influencersteuerung</li>
-<li>Always‑on Ads &amp; Funnel‑Setups</li>
-<li>Individuelle KPIs &amp; Dashboards</li>
-</ul></div>
-<button class="cta" onclick="document.querySelector('#kontakt').scrollIntoView({behavior:'smooth'})">Lass uns reden</button>
-</div>
-</div>
+  <h2 class="section-title reveal">Pakete &amp; Preise</h2>
+  <div class="pricing">
+    <!-- Paket 1 -->
+    <div class="price reveal">
+      <span class="chev">⌄</span>
+      <span class="badge">🚀 Starter</span>
+      <div class="amount">
+        <span class="old-price">1.890 €</span>
+        <span class="new-price">690 € <span class="per">/ Monat</span></span>
+      </div>
+      <div class="details">
+        <ul>
+          <li>Brand-Analyse &amp; Social-Media-Strategie</li>
+          <li>3 Kanäle: Facebook, Instagram, TikTok</li>
+          <li>Monatlicher Content-Plan</li>
+          <li>Content: 1 Post/Woche (FB &amp; IG)</li>
+          <li>1 Reel alle 2 Wochen (FB/IG/TikTok)</li>
+          <li>Reposts in Stories (FB, IG &amp; TikTok-Story)</li>
+          <li>Posting &amp; Ad-Schaltung (exkl. Werbebudget)</li>
+          <li>Community Management</li>
+          <li>Monitoring, Optimierung &amp; Monatsreport</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paket 2 -->
+    <div class="price reveal" style="transition-delay:.06s">
+      <span class="chev">⌄</span>
+      <span class="badge" style="background: color-mix(in oklab, var(--brand-2) 80%, white)">⚙️ Growth</span>
+      <div class="amount">
+        <span class="old-price">3.390 €</span>
+        <span class="new-price">1.490 € <span class="per">/ Monat</span></span>
+      </div>
+      <div class="details">
+        <ul>
+          <li>Brand-Analyse &amp; Social-Media-Strategie</li>
+          <li>Deep Trend Analysis</li>
+          <li>4 Kanäle: Facebook, Instagram, TikTok, LinkedIn</li>
+          <li>Monatlicher Content-Plan</li>
+          <li>Content: 2 Posts/Woche (FB &amp; IG)</li>
+          <li>1 Reel/Woche (FB/IG/TikTok)</li>
+          <li>1 LinkedIn-Post/Woche</li>
+          <li>Reposts in Stories (FB, IG &amp; TikTok-Story)</li>
+          <li>Posting &amp; Ad-Schaltung (exkl. Werbebudget)</li>
+          <li>Community Management inkl. Community Outreach</li>
+          <li>Monitoring &amp; Optimierung</li>
+          <li>Reporting alle 2 Wochen</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paket 3 (Custom) -->
+    <div class="price reveal" style="transition-delay:.12s">
+      <span class="chev">⌄</span>
+      <span class="badge" style="background: linear-gradient(135deg, var(--brand-1), var(--brand-2))">🌐 Custom</span>
+      <div class="amount">auf Anfrage</div>
+      <div class="details">
+        <ul>
+          <li>Audit &amp; Strategie-Workshop</li>
+          <li>Content-Produktion vor Ort (Video/Foto)</li>
+          <li>UGC/Creator-Sourcing &amp; Influencersteuerung</li>
+          <li>Always-on Ads &amp; Funnel-Setups</li>
+          <li>Individuelle KPIs &amp; Dashboards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- TEAM -->
 <section class="wrap" id="team">
@@ -1086,9 +1123,9 @@ body, main, section, header, nav, footer, .container, .wrapper {
 <div>© <span id="y"></span> Agentu. Alle Rechte vorbehalten.</div>
 <div class="links">
 <a href="https://www.linkedin.com" rel="noopener" target="_blank">LinkedIn</a>
-<a href="#impressum">Impressum</a>
-<a href="#datenschutz">Datenschutz</a>
-<a href="#agb">AGB</a>
+<a href="assets/legal/Impressum_Agentu.pdf" target="_blank" rel="noopener">Impressum</a>
+<a href="assets/legal/datenschutz.pdf" target="_blank" rel="noopener">Datenschutz</a>
+<a href="assets/legal/agb.pdf" target="_blank" rel="noopener">AGB</a>
 </div>
 </div></footer>
 <script>
